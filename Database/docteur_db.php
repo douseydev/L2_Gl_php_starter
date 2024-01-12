@@ -6,7 +6,7 @@ function getAllDocteurs() {
     $query = "SELECT docteurs.id, docteurs.nom, docteurs.prenom, docteurs.email,
     docteurs.adresse, docteurs.tel, services.libelle as service_libelle
     FROM docteurs
-    LEFT JOIN services ON services.id = docteurs.service_id";
+    INNER JOIN services ON services.id = docteurs.service_id";
     $resultat = $connexion->query($query);
     return $resultat;
 }
@@ -22,9 +22,10 @@ function addDocteur($nom, $prenom, $email, $adresse, $tel, $service_id) {
 
 function Recherche($nom_service) {
     global $connexion;
-    $query = "SELECT *
-        FROM docteurs
-        INNER JOIN services ON services.id = docteurs.service_id
+    $query = "SELECT docteurs.id, docteurs.nom, docteurs.prenom, docteurs.email,
+    docteurs.adresse, docteurs.tel, services.libelle as service_libelle
+    FROM docteurs
+    INNER JOIN services ON services.id = docteurs.service_id
         WHERE services.libelle LIKE '%" . $nom_service . "%'";
     $result = $connexion->query($query);
     return $result;

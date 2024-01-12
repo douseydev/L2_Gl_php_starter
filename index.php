@@ -5,16 +5,18 @@
 
 
     
+    
     if (isset($_GET['envoyer'])) {
         $service_name = $_GET['nom_service'];
-        
-    
-    if(!empty($_GET['nom_service'])) {
-        $service = Recherche($service_name);
-        }else{
-            $errorMessage = "Veuillez saisir entrer un service valide !";
+
+        if (!empty($_GET['nom_service'])) {
+            $service = Recherche($service_name);
+        } else {
+            $errorMessage = "Veuillez saisir un service valide !";
         }
-}
+    }
+
+
  
 ?>
 
@@ -46,11 +48,11 @@
            
             <div class="row">
                 <?php while ($docteur = $service->fetch(PDO::FETCH_ASSOC)): ?>
-                    <div class="col mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= $docteur['nom'] ?> <?= $docteur['prenom'] ?></h5>
-                                <p class="card-text">Service: <?= $docteur['libelle'] ?></p>
+                                <p class="card-text">Service: <?= $docteur['service_libelle'] ?></p>
                                 
                               
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $docteur['id'] ?>">
